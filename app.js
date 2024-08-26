@@ -23,7 +23,8 @@ dotenv.config({ path: "./config/config.env" });
 const allowedOrigins = [
   process.env.FRONTEND_URL, // Your frontend URL from environment variable
   "https://futurista-client.vercel.app", // Your production frontend URL
-  "https://futurista-client-ijamon93i-satyaswarup129s-projects.vercel.app" // Temporary frontend URL
+  "https://futurista-client-ijamon93i-satyaswarup129s-projects.vercel.app" ,
+  "http://localhost:5173" // Temporary frontend URL
 ];
 
 app.use(
