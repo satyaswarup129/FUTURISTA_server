@@ -46,7 +46,7 @@ app.use(
 app.options("*", cors());
 
 // Your routes go here
-app.use("/api/v1", routes);
+// app.use("/api/v1", routes);
 
 
 app.use(cookieParser());
