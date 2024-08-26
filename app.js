@@ -20,7 +20,34 @@ dotenv.config({ path: "./config/config.env" });
 //   })
 // );
 
-app.use(cors());
+const allowedOrigins = [
+  process.env.FRONTEND_URL, // Your frontend URL from environment variable
+  "https://futurista-client.vercel.app", // Your production frontend URL
+  "https://futurista-client-ijamon93i-satyaswarup129s-projects.vercel.app" // Temporary frontend URL
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, curl requests, etc.)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "PUT", "DELETE", "POST"],
+    credentials: true, // Include credentials (cookies, tokens, etc.)
+    allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers
+  })
+);
+
+// Preflight OPTIONS request handling
+app.options("*", cors());
+
+// Your routes go here
+app.use("/api/v1", routes);
+
 
 app.use(cookieParser());
 app.use(express.json());
