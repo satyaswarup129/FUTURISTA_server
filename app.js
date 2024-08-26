@@ -12,13 +12,15 @@ import fileUpload from "express-fileupload";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use(
-  cors({
-    origin:  "https://futurista-client.vercel.app",
-    methods: ["GET", "PUT", "DELETE", "POST"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin:  "https://futurista-client.vercel.app",
+//     methods: ["GET", "PUT", "DELETE", "POST"],
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());
